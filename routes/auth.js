@@ -5,7 +5,7 @@ const { body } = require("express-validator");
 const authController = require("../controller/auth");
 
 router.get("/", authController.getUsers);
-router.post("/", authController.something);
+router.get("/board", authController.something);
 router.post("/signup", authController.userSignup);
 router.post("/board", authController.boardSignup);
 router.post(
@@ -19,12 +19,5 @@ router.post(
   ],
   authController.userLogin
 );
-router.post(
-  "/password-reset",
-  [body("email", "Please input a valid email").isEmail().not().isEmpty()],
-  authController.passwordReset
-);
-router.get("/password-reset/:email", authController.getPasswordToken);
-router.post("/password-reset/:resetToken", authController.passwordChange);
 
 module.exports = router;
